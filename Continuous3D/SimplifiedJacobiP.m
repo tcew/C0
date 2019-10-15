@@ -1,6 +1,9 @@
 
 function phi = SimplifiedJacobiP(x,alpha,beta,N)
 
+  phi= JacobiP(x,alpha,beta,N);
+  return;
+  
   if(N==0)
     phi = ones(size(x));
     return;

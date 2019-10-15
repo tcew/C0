@@ -54,10 +54,6 @@ for N=1:10
     end
   end
 
-  maxmaxerr = max(maxerr)
-
-%  condVwb = cond(Vwb)
-%  condSimplifiedVwb = cond(SVwb)
 
   MM = transpose(Vgl)*diag(JW)*Vgl;
   SMM = transpose(SVgl)*diag(JW)*SVgl;
@@ -69,6 +65,15 @@ for N=1:10
   MMwb = transpose(Iwb)*diag(JW)*Iwb;
   SMMwb = transpose(SIwb)*diag(JW)*SIwb;
 
-  maxDiffInMMwb = max(max(abs(MMwb-SMMwb)))
+  maxDiffInMMwb(N) = max(max(abs(MMwb-SMMwb)));
 
+  %% suggests normalization of Jacobi polynomials is not great
+  condVwb(N) = cond(Vwb);
+  condSimplifiedVwb(N) = cond(SVwb);
+  maxmaxerr(N) = max(maxerr);
 end
+
+maxDiffInMMwb
+condVwb
+condSimplifiedVwb
+maxmaxerr
